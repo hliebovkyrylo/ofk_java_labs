@@ -83,18 +83,51 @@ public class HighArray {
         }
     }
 
+    public long removeMax() {
+        // Перевіряємо, чи масив не порожній
+        if (nElems == 0) {
+            // Якщо масив порожній, повертаємо -1
+            return -1;
+        } else {
+            // Знаходимо індекс найбільшого елемента в масиві
+            int maxIndex = 0;
+            for (int j = 1; j < nElems; j++) {
+                if (a[j] > a[maxIndex]) {
+                    maxIndex = j;
+                }
+            }
+
+            // Зберігаємо найбільше значення в окремій змінній
+            long maxValue = a[maxIndex];
+
+            // Видаляємо найбільший елемент з масиву
+            // Зсуваємо всі елементи після видаленого на одну позицію вліво
+            for (int k = maxIndex; k < nElems - 1; k++) {
+                a[k] = a[k + 1];
+            }
+            nElems--;
+
+            // Повертаємо видалене найбільше значення
+            return maxValue;
+        }
+    }
+
     // Метод main - точка входу в програму
     public static void main(String[] args) {
-        // Створюємо об'єкт класу HighArray з максимальним розміром масиву 10
         HighArray arr = new HighArray(10);
-        // Додаємо деякі значення в масив
         arr.insert(10);
         arr.insert(20);
         arr.insert(30);
         arr.insert(40);
         arr.insert(50);
-        // Виводимо максимальне значення масиву на консоль
-        System.out.println("Максимальне значення: " + arr.getMax());
+
+        System.out.println("Масив до видалення максимального елемента:");
+        arr.display();
+
+        long maxValue = arr.removeMax();
+        System.out.println("Видалене максимальне значення: " + maxValue);
+
+        System.out.println("Масив після видалення максимального елемента:");
+        arr.display();
     }
 }
-
