@@ -1,4 +1,3 @@
-// Клас HighArray реалізує масив цілих чисел з певними методами для роботи з ним
 public class HighArray {
     // Поле a - це масив довгих цілих чисел (long)
     private final long[] a;
@@ -121,13 +120,20 @@ public class HighArray {
         arr.insert(40);
         arr.insert(50);
 
-        System.out.println("Масив до видалення максимального елемента:");
+        System.out.println("Початковий масив:");
         arr.display();
 
-        long maxValue = arr.removeMax();
-        System.out.println("Видалене максимальне значення: " + maxValue);
+        // Створюємо новий масив для зберігання відсортованих даних
+        HighArray sortedArr = new HighArray(10);
 
-        System.out.println("Масив після видалення максимального елемента:");
-        arr.display();
+        // Копіюємо елементи з arr в sortedArr, видаляючи максимальний елемент з arr
+        // та вставляючи його в sortedArr
+        for (int i = 0; i < 5; i++) {
+            long maxValue = arr.removeMax();
+            sortedArr.insert(maxValue);
+        }
+
+        System.out.println("Відсортований масив:");
+        sortedArr.display();
     }
 }
